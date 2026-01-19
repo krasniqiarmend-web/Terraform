@@ -35,7 +35,8 @@ This project uses an **Azure Service Principal** for authentication.
 ``` az ad sp create-for-rbac \
   --name az-demo \
   --role Contributor \
-  --scopes /subscriptions/<SUBSCRIPTION_ID> ```
+  --scopes /subscriptions/<SUBSCRIPTION_ID>
+```
 
 ### Step 3: Export Credentials
 
