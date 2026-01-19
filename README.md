@@ -1,44 +1,33 @@
-# Terraform
-Terraform IAC with azure
-
-# - az login
-# Create Service Principal
-# az ad sp create-for-rbac -n az-demo --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID"
-# export ARM_CLIENT_ID=""
-# export ARM_CLIENT_SECRET=""
-# export ARM_SUBSCRIPTION_ID=""
-# export ARM_TENANT_ID=""
+Terraform/
+├── README.md
+├── main.tf
+├── provider.tf
+├── variables.tf
+├── outputs.tf
+├── .gitignore
 
 
-terraform {
-  required_providers {
-    azurerm = {
-        source = "hashicorp/azurerm"
-        version = "~> 4.57.0"
-    }
-  }
-  required_version = ">=1.14.3"
-}
+# Terraform Azure Infrastructure
 
-provider "azurerm" {
-    features {
-      
-    }
-    
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
-  location = "West Europe"
-}
+This repository demonstrates Infrastructure as Code (IaC) using **Terraform** to provision basic resources in **Microsoft Azure**.
 
-resource "azurerm_storage_account" "example" {
- 
-  name                     = "Contorso1"
-  resource_group_name      = azurerm_resource_group.example.name
-  location                 = azurerm_resource_group.example.location # implicit dependency
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+The project is intended as a learning and portfolio example, showcasing:
+- Azure authentication using a Service Principal
+- Provider and version constraints
+- Resource dependencies in Terraform
 
-  tags = {
-    environment = "staging"
-  }
-}    
+#  Resources Created
+- Azure Resource Group
+- Azure Storage Account
+
+# Authentication
+
+This project uses an Azure **Service Principal** for authentication.
+
+# Steps:
+```bash
+az login
+az ad sp create-for-rbac \
+  --name az-demo \
+  --role Contributor \
+  --scopes /subscriptions/<SUBSCRIPTION_ID>
