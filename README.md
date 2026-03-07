@@ -6,38 +6,30 @@ This is a Terraform project I built to learn the ropes of Infrastructure as Code
 
 The traffic flows from the Internet through a Public IP and is filtered by a Network Security Group (NSG) before reaching the VM.
 
-* 
 **Public IP:** Static entry point for the web server.
 
 
-* 
 **Security:** NSG allows SSH (22) and HTTP (80).
 
-
-* 
+ 
 **Networking:** A Virtual Network (VNet) with a 10.0.0.0/16 address space and a dedicated 10.0.1.0/24 subnet.
 
 
-* 
 **Compute:** Ubuntu 22.04 LTS running on a `Standard_B1s` instance.
 
 
-* 
 **Automation:** Uses `custom_data` to bootstrap the Nginx installation.
 
 
 
 ## 📂 Project Structure
 
-* 
 **main.tf**: Defines the core resources (VNet, VM, NSG).
 
 
-* 
 **variables.tf**: Holds the project name, resource group, and region defaults.
 
 
-* 
 **outputs.tf**: Displays the Public IP and generates the sensitive SSH private key.
 
 
@@ -94,11 +86,9 @@ ssh -i lab_key.pem azureuser@<YOUR_PUBLIC_IP>
 
 ## ⚠️ Notes & "Gotchas"
 
-* 
 **SSH Security:** Currently, port 22 is open to the entire internet (`*`). In a real production setup, I would restrict `source_address_prefix` to my own IP address.
 
 
-* 
 **Private Key:** The `ssh_private_key` is stored in the `terraform.tfstate` file. Treat that file with care, as it contains the credentials to access your VM.
 
 
